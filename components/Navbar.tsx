@@ -40,7 +40,7 @@ export default function Navbar() {
           
           {/* Logo - Left */}
           <Link href="/" className="flex items-center gap-3 group">
-    <img src="/logo.png" alt="MPDI" className="h-12 w-auto" />
+          <img src ="/logo.png" alt="MPDI" className="h-12 w-12 object-contain" />
           </Link>
 
           {/* Desktop Nav - Center */}

@@ -29,6 +29,7 @@ export default function Home() {
     <>
       <Navbar />
       
+      
       {/* HERO - World-Class Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white">
         {/* Animated Background Elements */}
