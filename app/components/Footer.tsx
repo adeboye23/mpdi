@@ -11,11 +11,12 @@ export default function Footer() {
           {/* Logo & Description */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-6">
-              {/* Logo - Same as Navbar */}
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6D712E] to-[#FFC600] flex items-center justify-center text-white font-bold">
-                M
-              </div>
-              <span className="font-bold text-xl">MPDI</span>
+              {/* LOGO - Replace with your logo */}
+              
+               <img src="/logo.png" alt="MPDI" className="h-10 w-auto" />
+              
+      
+             
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Building a resilient, empowered and ethical African media ecosystem.

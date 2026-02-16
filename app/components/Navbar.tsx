@@ -35,21 +35,10 @@ export default function Navbar() {
       }`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           
-          {/* Logo - REPLACE THIS SECTION WITH YOUR LOGO */}
-          <Link href="/" className="flex items-center gap-3">
-            {/* METHOD 1: If you have logo.png in public folder, uncomment this: */}
-            {/* <img src="/logo.png" alt="MPDI" className="h-12 w-auto" /> */}
-            
-            {/* METHOD 2: Current placeholder (delete when you add real logo) */}
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#6D712E] to-[#FFC600] flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                M
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-extrabold text-[#6D712E] leading-none">MPDI</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Media Development</span>
-              </div>
-            </div>
+           
+          <Link href="/" className="flex items-center gap-3 group">
+          <img src="/logo-horizontal.png" alt="MPDI" className="h-10 w-auto object contain" />
+
           </Link>
 
           {/* Desktop Navigation */}

@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 export default function Home() {
   const [blogPosts, setBlogPosts] = useState([])
   const [events, setEvents] = useState([])
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
     fetch('/api/blog')
@@ -25,121 +26,248 @@ export default function Home() {
       .catch(err => console.error(err))
   }, [])
 
+  // Auto-slide every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % 5)
+    }, 6000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % 5)
+  const previousSlide = () => setCurrentSlide((prev) => (prev - 1 + 5) % 5)
+
   return (
     <>
       <Navbar />
       
-      
-      {/* HERO - World-Class Design */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-[#FFC600]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-[#6D712E]/10 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10 pt-32 pb-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFC600]/10 border border-[#FFC600]/20">
-                <Sparkles size={16} className="text-[#FFC600]" />
-                <span className="text-sm font-bold text-[#6D712E]">TRANSFORMING AFRICAN MEDIA</span>
-              </div>
-
-              <h1 className="text-6xl lg:text-7xl font-extrabold leading-[1.1] text-gray-900">
-                Empowering Media.
-                <br />
-                <span className="bg-gradient-to-r from-[#6D712E] to-[#FFC600] bg-clip-text text-transparent">
+      {/* HERO CAROUSEL - 5 Sliding Slides with REAL IMAGES */}
+      <section className="relative h-screen overflow-hidden">
+        {/* Slide 1: Main Mission - Journalists Working */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&q=80)',
+            }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-6 pt-20">
+              <div className="max-w-4xl">
+                {/* Text Directly on Background */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFC600]/30 border border-[#FFC600] mb-6">
+                  <Sparkles size={16} className="text-[#FFC600]" />
+                  <span className="text-sm font-bold text-white">TRANSFORMING AFRICAN MEDIA</span>
+                </div>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-white via-[#FFC600] to-white bg-clip-text text-transparent animate-gradient">
+                  Empowering Media.
+                  <br />
                   Strengthening Democracy.
-                </span>
-              </h1>
-
-              <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
-                MPDI builds capacity, fosters ethics, and advances media literacy across Africa. We train journalists, protect press freedom, and empower communities.
-              </p>
-
-              <div className="flex flex-wrap gap-4">
-                <Link 
-                  href="/about"
-                  className="btn-gold px-8 py-4 rounded-full font-bold inline-flex items-center gap-2 text-lg"
-                >
-                  Learn More <ArrowRight size={20} />
-                </Link>
-                <Link 
-                  href="/donate"
-                  className="px-8 py-4 rounded-full font-bold inline-flex items-center gap-2 text-lg border-2 border-[#6D712E] text-[#6D712E] hover:bg-[#6D712E] hover:text-white transition-all"
-                >
-                  Donate Now <Heart size={20} />
-                </Link>
-              </div>
-
-              {/* Snapshot Stats */}
-              <div className="grid grid-cols-1 gap-4 pt-8 border-t border-gray-200">
-                <div className="flex items-start gap-3 group cursor-default">
-                  <div className="mt-1 p-2 rounded-full bg-[#FFC600]/10 group-hover:bg-[#FFC600] transition-all">
-                    <CheckCircle className="text-[#FFC600] group-hover:text-white transition-colors" size={20} />
-                  </div>
-                  <p className="text-gray-700 font-medium">Trained journalists and students across Nigeria & region</p>
-                </div>
-                <div className="flex items-start gap-3 group cursor-default">
-                  <div className="mt-1 p-2 rounded-full bg-[#FFC600]/10 group-hover:bg-[#FFC600] transition-all">
-                    <CheckCircle className="text-[#FFC600] group-hover:text-white transition-colors" size={20} />
-                  </div>
-                  <p className="text-gray-700 font-medium">Convened multi-stakeholder events on ethics</p>
-                </div>
-                <div className="flex items-start gap-3 group cursor-default">
-                  <div className="mt-1 p-2 rounded-full bg-[#FFC600]/10 group-hover:bg-[#FFC600] transition-all">
-                    <CheckCircle className="text-[#FFC600] group-hover:text-white transition-colors" size={20} />
-                  </div>
-                  <p className="text-gray-700 font-medium">Rapid-response welfare and legal referrals</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Visual */}
-            <div className="relative hidden lg:block">
-              <div className="relative z-10">
-                <div className="grid grid-cols-2 gap-6">
-                  {/* Card 1 */}
-                  <div className="space-y-6">
-                    <div className="bg-gradient-to-br from-[#6D712E] to-[#585c25] rounded-3xl p-8 shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
-                      <Users size={48} className="text-white mb-4" />
-                      <h3 className="text-white font-bold text-2xl mb-2">1000+</h3>
-                      <p className="text-white/80">Journalists Trained</p>
-                    </div>
-                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 transform hover:-translate-y-2 transition-all duration-300">
-                      <Shield size={48} className="text-red-500 mb-4" />
-                      <h3 className="text-gray-900 font-bold text-2xl mb-2">24/7</h3>
-                      <p className="text-gray-600">Welfare Support</p>
-                    </div>
-                  </div>
-
-                  {/* Card 2 */}
-                  <div className="space-y-6 mt-12">
-                    <div className="bg-[#FFC600] rounded-3xl p-8 shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
-                      <Globe size={48} className="text-black mb-4" />
-                      <h3 className="text-black font-bold text-2xl mb-2">10+</h3>
-                      <p className="text-black/80">Years Experience</p>
-                    </div>
-                    <div className="bg-gradient-to-br from-[#00008B] to-[#0000CD] rounded-3xl p-8 shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
-                      <BookOpen size={48} className="text-white mb-4" />
-                      <h3 className="text-white font-bold text-2xl mb-2">50+</h3>
-                      <p className="text-white/80">Training Programmes</p>
-                    </div>
-                  </div>
+                </h1>
+                <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed drop-shadow-lg">
+                  Building capacity and advancing media literacy across Africa
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/about" className="btn-gold px-8 py-4 rounded-full font-bold inline-flex items-center gap-2">
+                    Learn More <ArrowRight size={20} />
+                  </Link>
+                  <Link href="/donate" className="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-[#6D712E] px-8 py-4 rounded-full font-bold inline-flex items-center gap-2 transition-all">
+                    Donate Now <Heart size={20} />
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-gray-400 rounded-full"></div>
+        {/* Slide 2: Training & Education - People Learning */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1920&q=80)',
+            }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-6 pt-20">
+              <div className="max-w-4xl ml-auto text-right">
+                {/* Text Directly on Background */}
+                <BookOpen size={64} className="text-[#FFC600] mb-6 ml-auto drop-shadow-2xl" />
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-l from-[#FFC600] via-white to-[#FFC600] bg-clip-text text-transparent animate-gradient">
+                  Training & Capacity Building
+                </h2>
+                <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed drop-shadow-lg">
+                  Practical skills, accredited modules, and fellowships for journalists and students
+                </p>
+                <div className="flex flex-wrap gap-4 justify-end">
+                  <Link href="/programmes" className="btn-gold px-8 py-4 rounded-full font-bold inline-flex items-center gap-2">
+                    View Programmes <ArrowRight size={20} />
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Slide 3: Press Freedom - Journalist with Camera */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === 2 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=1920&q=80)',
+            }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-6 pt-20">
+              <div className="max-w-4xl">
+                {/* Text Directly on Background */}
+                <Shield size={64} className="text-[#FFC600] mb-6 drop-shadow-2xl" />
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-red-400 via-[#FFC600] to-white bg-clip-text text-transparent animate-gradient">
+                  Protecting Press Freedom
+                </h2>
+                <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed drop-shadow-lg">
+                  24/7 welfare support, legal referrals, and emergency assistance for journalists
+                </p>
+                <div className="grid md:grid-cols-2 gap-4 mb-8">
+                  <div className="flex items-center gap-3 text-white drop-shadow-lg">
+                    <CheckCircle className="text-[#FFC600]" size={24} />
+                    <span className="text-lg font-semibold">Emergency hotline</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white drop-shadow-lg">
+                    <CheckCircle className="text-[#FFC600]" size={24} />
+                    <span className="text-lg font-semibold">Legal support network</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white drop-shadow-lg">
+                    <CheckCircle className="text-[#FFC600]" size={24} />
+                    <span className="text-lg font-semibold">Medical assistance</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white drop-shadow-lg">
+                    <CheckCircle className="text-[#FFC600]" size={24} />
+                    <span className="text-lg font-semibold">Safe houses</span>
+                  </div>
+                </div>
+                <Link href="/programmes" className="btn-gold px-8 py-4 rounded-full font-bold inline-flex items-center gap-2">
+                  Learn About Our Support <ArrowRight size={20} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Slide 4: Community Impact - People Gathering */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === 3 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80)',
+            }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-6 pt-20">
+              <div className="max-w-4xl ml-auto text-right">
+                {/* Text Directly on Background */}
+                <Users size={64} className="text-white mb-6 ml-auto drop-shadow-2xl" />
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-l from-[#0ADD08] via-white to-[#FFC600] bg-clip-text text-transparent animate-gradient">
+                  Empowering Communities
+                </h2>
+                <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed drop-shadow-lg">
+                  From urban newsrooms to rural community radio - building Africa&apos;s media future
+                </p>
+                <div className="grid grid-cols-3 gap-6 mb-8">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
+                    <div className="text-4xl font-bold text-white mb-2 drop-shadow-lg">1000+</div>
+                    <div className="text-white/90">Journalists Trained</div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
+                    <div className="text-4xl font-bold text-white mb-2 drop-shadow-lg">50+</div>
+                    <div className="text-white/90">Programmes</div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
+                    <div className="text-4xl font-bold text-white mb-2 drop-shadow-lg">10+</div>
+                    <div className="text-white/90">Years</div>
+                  </div>
+                </div>
+                <Link href="/about" className="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-full font-bold inline-flex items-center gap-2 transition-all">
+                  Our Story <ArrowRight size={20} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Slide 5: Join the Movement - Hands Together */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === 4 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&q=80)',
+            }}
+          >
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-6 pt-20">
+              <div className="max-w-4xl mx-auto text-center">
+                {/* Text Directly on Background */}
+                <Heart size={64} className="text-[#FFC600] mb-6 mx-auto drop-shadow-2xl" />
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight bg-gradient-to-r from-white via-[#FFC600] to-white bg-clip-text text-transparent animate-gradient">
+                  Join Our Mission
+                </h2>
+                <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed drop-shadow-lg">
+                  Support independent, ethical media across Africa
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                  <Link href="/donate" className="bg-[#FFC600] text-black hover:bg-[#ffdb4d] px-10 py-5 rounded-full font-bold inline-flex items-center justify-center gap-2 text-lg transition-all">
+                    Donate Now <Heart size={24} />
+                  </Link>
+                  <Link href="/contact" className="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-black px-10 py-5 rounded-full font-bold inline-flex items-center justify-center gap-2 text-lg transition-all">
+                    Partner With Us <ArrowRight size={24} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Dots */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex gap-3">
+          {[0, 1, 2, 3, 4].map((index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`transition-all duration-300 ${
+                currentSlide === index 
+                  ? 'bg-white w-12 h-3 rounded-full' 
+                  : 'bg-white/50 hover:bg-white/75 w-3 h-3 rounded-full'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={previousSlide}
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 w-14 h-14 bg-white/20 backdrop-blur-md hover:bg-white/40 rounded-full flex items-center justify-center text-white transition-all shadow-lg"
+          aria-label="Previous slide"
+        >
+          <ArrowRight size={28} className="rotate-180" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 w-14 h-14 bg-white/20 backdrop-blur-md hover:bg-white/40 rounded-full flex items-center justify-center text-white transition-all shadow-lg"
+          aria-label="Next slide"
+        >
+          <ArrowRight size={28} />
+        </button>
       </section>
 
       {/* Intro Quote */}
@@ -155,7 +283,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What We Do */}
+      {/* What We Do - Programme Tiles */}
       <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
