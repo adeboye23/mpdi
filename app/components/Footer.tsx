@@ -11,27 +11,50 @@ export default function Footer() {
           {/* Logo & Description */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-6">
-              {/* LOGO - Replace with your logo */}
-              
-               <img src="/logo.png" alt="MPDI" className="h-10 w-auto" />
-              
-      
              
+               <img src="/logo.png" alt="MPDI" className="h-10 w-auto" /> 
+              
+              
+              <span className="font-bold text-xl">MPDI</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Building a resilient, empowered and ethical African media ecosystem.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-[#FFC600] transition-colors">
+              <a 
+                href="https://twitter.com/mpdi_africa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
+                aria-label="Twitter"
+              >
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#FFC600] transition-colors">
+              <a 
+                href="https://facebook.com/mpdi.africa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
+                aria-label="Facebook"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#FFC600] transition-colors">
+              <a 
+                href="https://instagram.com/mpdi_africa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
+                aria-label="Instagram"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#FFC600] transition-colors">
+              <a 
+                href="https://linkedin.com/company/mpdi-africa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
+                aria-label="LinkedIn"
+              >
                 <Linkedin size={20} />
               </a>
             </div>

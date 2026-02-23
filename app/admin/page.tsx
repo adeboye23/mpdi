@@ -2,219 +2,171 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { FileText, Calendar, Mail, Heart, Users, Plus, Eye } from 'lucide-react'
+import Image from 'next/image'
+import { 
+  LayoutDashboard, 
+  FileText, 
+  Calendar, 
+  MessageSquare, 
+  Download,
+  Users,
+  TrendingUp,
+  Eye
+} from 'lucide-react'
 
-export default function AdminPage() {
+export default function AdminDashboard() {
   const [stats, setStats] = useState({
-    blogPosts: 0,
-    events: 0,
-    contacts: 0
+    totalBlogPosts: 5,
+    totalEvents: 6,
+    totalMessages: 12,
+    totalPublications: 3
   })
 
-  const [recentPosts, setRecentPosts] = useState([])
-  const [recentEvents, setRecentEvents] = useState([])
-  const [recentContacts, setRecentContacts] = useState([])
-
-  useEffect(() => {
-    // Fetch blog posts
-    fetch('/api/blog')
-      .then(res => res.json())
-      .then(data => {
-        setStats(prev => ({ ...prev, blogPosts: data.length }))
-        setRecentPosts(data.slice(0, 5))
-      })
-
-    // Fetch events
-    fetch('/api/events')
-      .then(res => res.json())
-      .then(data => {
-        setStats(prev => ({ ...prev, events: data.length }))
-        setRecentEvents(data.slice(0, 5))
-      })
-
-    // Fetch contacts
-    fetch('/api/contact')
-      .then(res => res.json())
-      .then(data => {
-        setStats(prev => ({ ...prev, contacts: data.length }))
-        setRecentContacts(data.slice(0, 5))
-      })
-  }, [])
+  const [recentActivity] = useState([
+    { type: 'blog', title: 'New blog post published', time: '2 hours ago' },
+    { type: 'event', title: 'Event registration received', time: '5 hours ago' },
+    { type: 'message', title: 'New contact message', time: '1 day ago' }
+  ])
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#6D712E] to-[#FFC600] rounded-lg flex items-center justify-center text-white font-bold">
-              M
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">MPDI Admin</h1>
-              <p className="text-xs text-gray-500">Content Management System</p>
-            </div>
+      {/* Admin Header with Logo */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-3">
+            <img src="/logo-horizontal.png" alt="MPDI" className="h-10 w-auto" />
+             
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-gray-900">MPDI Admin</span>
+                <span className="text-xs text-gray-500">Dashboard</span>
+              </div>
+            </Link>
+            <Link href="/" className="text-sm text-gray-600 hover:text-mpdi-yellow font-medium">
+              ← Back to Website
+            </Link>
           </div>
-
-          <Link 
-            href="/"
-            className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
-          >
-            View Website →
-          </Link>
         </div>
       </header>
 
       <div className="container mx-auto px-6 py-8">
-        {/* Welcome */}
+        {/* Page Title */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back!</h2>
-          <p className="text-gray-600">Here's what's happening with your website</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
+          <p className="text-gray-600">Welcome back! Here&apos;s what&apos;s happening.</p>
         </div>
 
-        {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        {/* Stats Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {/* Blog Posts */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-mpdi-yellow transition-all">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-100 rounded-xl">
-                <FileText className="text-blue-600" size={24} />
+              <div className="w-12 h-12 bg-mpdi-yellow/10 rounded-xl flex items-center justify-center">
+                <FileText size={24} className="text-mpdi-yellow" />
               </div>
-              <Eye size={16} className="text-gray-400" />
+              <span className="text-sm text-green-600 font-bold">+12%</span>
             </div>
-            <h3 className="text-3xl font-bold text-gray-900">{stats.blogPosts}</h3>
-            <p className="text-gray-600 text-sm mt-1">Blog Posts</p>
+            <h3 className="text-3xl font-bold text-gray-900 mb-1">{stats.totalBlogPosts}</h3>
+            <p className="text-gray-600 text-sm">Blog Posts</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          {/* Events */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-mpdi-green transition-all">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-green-100 rounded-xl">
-                <Calendar className="text-green-600" size={24} />
+              <div className="w-12 h-12 bg-mpdi-green/10 rounded-xl flex items-center justify-center">
+                <Calendar size={24} className="text-mpdi-green" />
               </div>
-              <Eye size={16} className="text-gray-400" />
+              <span className="text-sm text-green-600 font-bold">+5%</span>
             </div>
-            <h3 className="text-3xl font-bold text-gray-900">{stats.events}</h3>
-            <p className="text-gray-600 text-sm mt-1">Events</p>
+            <h3 className="text-3xl font-bold text-gray-900 mb-1">{stats.totalEvents}</h3>
+            <p className="text-gray-600 text-sm">Events</p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          {/* Messages */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-blue-500 transition-all">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-purple-100 rounded-xl">
-                <Mail className="text-purple-600" size={24} />
+              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
+                <MessageSquare size={24} className="text-blue-500" />
               </div>
-              {stats.contacts > 0 && (
-                <span className="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full">
-                  {stats.contacts}
-                </span>
-              )}
+              <span className="text-sm text-green-600 font-bold">+8%</span>
             </div>
-            <h3 className="text-3xl font-bold text-gray-900">{stats.contacts}</h3>
-            <p className="text-gray-600 text-sm mt-1">Contact Messages</p>
+            <h3 className="text-3xl font-bold text-gray-900 mb-1">{stats.totalMessages}</h3>
+            <p className="text-gray-600 text-sm">Messages</p>
           </div>
-        </div>
 
-        {/* Quick Actions */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-12">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Quick Actions</h3>
-          <div className="grid md:grid-cols-4 gap-4">
-            <Link
-              href="/admin/blog/new"
-              className="flex flex-col items-center justify-center p-6 border-2 border-gray-200 rounded-xl hover:border-[#FFC600] hover:bg-[#FFC600]/5 transition-all group"
-            >
-              <div className="bg-blue-500 p-3 rounded-xl mb-3 group-hover:scale-110 transition-transform">
-                <Plus className="text-white" size={24} />
+          {/* Publications */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-purple-500 transition-all">
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center">
+                <Download size={24} className="text-purple-500" />
               </div>
-              <span className="text-sm font-medium text-gray-700">New Blog Post</span>
-            </Link>
-
-            <Link
-              href="/admin/events/new"
-              className="flex flex-col items-center justify-center p-6 border-2 border-gray-200 rounded-xl hover:border-[#FFC600] hover:bg-[#FFC600]/5 transition-all group"
-            >
-              <div className="bg-green-500 p-3 rounded-xl mb-3 group-hover:scale-110 transition-transform">
-                <Plus className="text-white" size={24} />
-              </div>
-              <span className="text-sm font-medium text-gray-700">New Event</span>
-            </Link>
-
-            <Link
-              href="/admin/contact"
-              className="flex flex-col items-center justify-center p-6 border-2 border-gray-200 rounded-xl hover:border-[#FFC600] hover:bg-[#FFC600]/5 transition-all group"
-            >
-              <div className="bg-purple-500 p-3 rounded-xl mb-3 group-hover:scale-110 transition-transform">
-                <Mail className="text-white" size={24} />
-              </div>
-              <span className="text-sm font-medium text-gray-700">View Messages</span>
-            </Link>
-
-            <Link
-              href="/blog"
-              target="_blank"
-              className="flex flex-col items-center justify-center p-6 border-2 border-gray-200 rounded-xl hover:border-[#FFC600] hover:bg-[#FFC600]/5 transition-all group"
-            >
-              <div className="bg-gray-500 p-3 rounded-xl mb-3 group-hover:scale-110 transition-transform">
-                <Eye className="text-white" size={24} />
-              </div>
-              <span className="text-sm font-medium text-gray-700">View Site</span>
-            </Link>
+              <span className="text-sm text-green-600 font-bold">+3%</span>
+            </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-1">{stats.totalPublications}</h3>
+            <p className="text-gray-600 text-sm">Publications</p>
           </div>
         </div>
 
-        {/* Recent Activity */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          {/* Recent Blog Posts */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-gray-900">Recent Blog Posts</h3>
-              <Link href="/admin/blog" className="text-sm text-[#6D712E] font-medium hover:underline">
-                View All →
+        {/* Quick Actions & Recent Activity */}
+        <div className="grid lg:grid-cols-3 gap-6">
+          {/* Quick Actions */}
+          <div className="lg:col-span-2 bg-white rounded-2xl p-6 border border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900 mb-6">Quick Actions</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link 
+                href="/admin/blog"
+                className="p-4 border-2 border-gray-200 rounded-xl hover:border-mpdi-yellow hover:shadow-lg transition-all group"
+              >
+                <FileText size={24} className="text-mpdi-yellow mb-2" />
+                <h3 className="font-bold text-gray-900 mb-1">Manage Blog Posts</h3>
+                <p className="text-sm text-gray-600">Create, edit, or delete blog posts</p>
+              </Link>
+
+              <Link 
+                href="/admin/events"
+                className="p-4 border-2 border-gray-200 rounded-xl hover:border-mpdi-green hover:shadow-lg transition-all group"
+              >
+                <Calendar size={24} className="text-mpdi-green mb-2" />
+                <h3 className="font-bold text-gray-900 mb-1">Manage Events</h3>
+                <p className="text-sm text-gray-600">Create or update events</p>
+              </Link>
+
+              <Link 
+                href="/admin/messages"
+                className="p-4 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:shadow-lg transition-all group"
+              >
+                <MessageSquare size={24} className="text-blue-500 mb-2" />
+                <h3 className="font-bold text-gray-900 mb-1">View Messages</h3>
+                <p className="text-sm text-gray-600">Check contact form submissions</p>
+              </Link>
+
+              <Link 
+                href="/admin/publications"
+                className="p-4 border-2 border-gray-200 rounded-xl hover:border-purple-500 hover:shadow-lg transition-all group"
+              >
+                <Download size={24} className="text-purple-500 mb-2" />
+                <h3 className="font-bold text-gray-900 mb-1">Manage Publications</h3>
+                <p className="text-sm text-gray-600">Upload or update documents</p>
               </Link>
             </div>
-            
-            {recentPosts.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No posts yet</p>
-            ) : (
-              <div className="space-y-4">
-                {recentPosts.map((post: any) => (
-                  <div key={post.id} className="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0">
-                    <div className="p-2 bg-blue-100 rounded-lg">
-                      <FileText size={16} className="text-blue-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">{post.title}</p>
-                      <p className="text-xs text-gray-500 mt-1">By {post.author}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
-          {/* Recent Contacts */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-gray-900">Recent Messages</h3>
-              <Link href="/admin/contact" className="text-sm text-[#6D712E] font-medium hover:underline">
-                View All →
-              </Link>
-            </div>
-            
-            {recentContacts.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No messages yet</p>
-            ) : (
-              <div className="space-y-4">
-                {recentContacts.map((contact: any) => (
-                  <div key={contact.id} className="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0">
-                    <div className="p-2 bg-purple-100 rounded-lg">
-                      <Mail size={16} className="text-purple-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">{contact.subject}</p>
-                      <p className="text-xs text-gray-500 mt-1">{contact.name} - {contact.email}</p>
-                    </div>
+          {/* Recent Activity */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900 mb-6">Recent Activity</h2>
+            <div className="space-y-4">
+              {recentActivity.map((activity, idx) => (
+                <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="w-8 h-8 bg-mpdi-yellow/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <TrendingUp size={16} className="text-mpdi-yellow" />
                   </div>
-                ))}
-              </div>
-            )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900">{activity.title}</p>
+                    <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

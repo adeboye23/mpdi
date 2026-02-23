@@ -1,19 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        primary: '#6D712E',
-        accent: '#FFC600',
+        'mpdi-yellow': '#F6B100',
+        'mpdi-green': '#02D400', 
+        'mpdi-red': '#C60300',
+        'mpdi-black': '#191919',
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        serif: ['Merriweather', 'Georgia', 'serif'],
+        'poppins': ['Poppins', 'sans-serif'],
       },
     },
   },
