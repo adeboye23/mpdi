@@ -1,12 +1,16 @@
 import { NextResponse } from 'next/server'
-import db from '@/lib/db'
+import { sql } from '@vercel/postgres'
 
 export async function GET() {
   try {
-    const events = db.prepare('SELECT * FROM events ORDER BY date DESC').all()
-    return NextResponse.json(events)
+    const { rows } = await sql`
+      SELECT * FROM events 
+      ORDER BY date DESC
+    `
+    return NextResponse.json({ events: rows })
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to get events' }, { status: 500 })
+    console.error('Error fetching events:', error)
+    return NextResponse.json({ events: [] })
   }
 }
 
@@ -14,17 +18,46 @@ export async function POST(request: Request) {
   try {
     const { title, description, date, location } = await request.json()
     
-    const stmt = db.prepare('INSERT INTO events (title, description, date, location) VALUES (?, ?, ?, ?)')
-    const result = stmt.run(title, description, date, location || null)
+    await sql`
+      INSERT INTO events (title, description, date, location)
+      VALUES (${title}, ${description}, ${date}, ${location})
+    `
     
-    return NextResponse.json({ 
-      id: result.lastInsertRowid,
-      title,
-      description,
-      date,
-      location
-    }, { status: 201 })
+    return NextResponse.json({ success: true })
   } catch (error) {
+    console.error('Error creating event:', error)
     return NextResponse.json({ error: 'Failed to create event' }, { status: 500 })
+  }
+}
+
+export async function PUT(request: Request) {
+  try {
+    const { id, title, description, date, location } = await request.json()
+    
+    await sql`
+      UPDATE events 
+      SET title = ${title}, description = ${description}, 
+          date = ${date}, location = ${location}
+      WHERE id = ${id}
+    `
+    
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Error updating event:', error)
+    return NextResponse.json({ error: 'Failed to update event' }, { status: 500 })
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+    
+    await sql`DELETE FROM events WHERE id = ${id}`
+    
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Error deleting event:', error)
+    return NextResponse.json({ error: 'Failed to delete event' }, { status: 500 })
   }
 }

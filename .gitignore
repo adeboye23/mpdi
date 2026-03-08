@@ -1,6 +1,7 @@
 node_modules/
 .next/
-.env.local/
-.env.production/
-*.db/
-mpdi.db/
+.env.local
+.env.production
+*.db
+mpdi.db
+.env

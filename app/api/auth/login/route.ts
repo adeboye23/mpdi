@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import sqlite3 from 'sqlite3'
-import { open } from 'sqlite'
+import { sql } from '@vercel/postgres'
 import { verifyPassword, generateToken } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
@@ -9,13 +8,9 @@ export async function POST(request: NextRequest) {
 
     console.log('🔐 Login attempt for:', email)
 
-    const db = await open({
-      filename: './mpdi.db',
-      driver: sqlite3.Database
-    })
-
-    const user = await db.get('SELECT * FROM admins WHERE email = ?', [email])
-    await db.close()
+    // Query Postgres instead of SQLite
+    const { rows } = await sql`SELECT * FROM admins WHERE email = ${email}`
+    const user = rows[0]
 
     console.log('👤 User found:', user ? 'YES' : 'NO')
 
@@ -30,21 +25,20 @@ export async function POST(request: NextRequest) {
       role: user.role
     })
 
-    console.log('🎫 Token generated:', token.substring(0, 20) + '...')
+    console.log('🎫 Token generated')
 
     const response = NextResponse.json({ 
       success: true, 
       user: { email: user.email },
-      token: token // Send token to client too
+      token: token
     })
     
-    // Set cookie with multiple attempts
     response.cookies.set({
       name: 'auth-token',
       value: token,
       httpOnly: true,
-      secure: false, // Set to false for localhost
-      sameSite: 'lax', // Changed from 'strict' to 'lax'
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60,
       path: '/'
     })
