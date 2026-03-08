@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Force rebuild
   reactStrictMode: true,
   async headers() {
     return [
