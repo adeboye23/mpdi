@@ -7,10 +7,10 @@ export async function GET() {
       SELECT * FROM blog_posts 
       ORDER BY created_at DESC
     `
-    return NextResponse.json({ posts: rows })
+    return NextResponse.json(rows)
   } catch (error) {
     console.error('Error fetching blog posts:', error)
-    return NextResponse.json({ posts: [] })
+   return NextResponse.json([])
   }
 }
 

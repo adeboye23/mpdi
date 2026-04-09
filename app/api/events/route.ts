@@ -7,10 +7,10 @@ export async function GET() {
       SELECT * FROM events 
       ORDER BY date DESC
     `
-    return NextResponse.json({ events: rows })
+    return NextResponse.json(rows)
   } catch (error) {
     console.error('Error fetching events:', error)
-    return NextResponse.json({ events: [] })
+    return NextResponse.json([])
   }
 }
 
