@@ -35,7 +35,7 @@ export default function Navbar() {
       }`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           
-          {/* LOGO - SVG (No file needed!) */}
+          
           <Link href="/" className="flex items-center gap-3 group">
            <img src="/logo-horizontal.png" alt="MPDI" className="h-10 w-auto" />
           </Link>
