@@ -22,7 +22,7 @@ export default function AdminEvents() {
   const loadEvents = () => {
     fetch('/api/events')
       .then(res => res.json())
-      .then(data => setEvents(data.events || []))
+      .then(data => setEvents(data || []))
       .catch(err => console.error(err))
   }
 

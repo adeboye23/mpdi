@@ -21,7 +21,7 @@ export default function AdminBlog() {
   const loadPosts = () => {
     fetch('/api/blog')
       .then(res => res.json())
-      .then(data => setBlogPosts(data.posts || []))
+      .then(data => setBlogPosts(data || []))
       .catch(err => console.error(err))
   }
 
