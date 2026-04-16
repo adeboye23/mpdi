@@ -110,9 +110,12 @@ export default function BlogPage() {
                         <span>{post.author}</span>
                       </div>
                       
-                      <button className="text-[#6D712E] font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
-                        Read <ArrowRight size={16} />
-                      </button>
+                      <button 
+  onClick={() => window.location.href = `/blog/${post.id}`}
+  className="text-[#6D712E] font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all"
+>
+  Read <ArrowRight size={16} />
+</button>
                     </div>
                   </div>
                 </article>
