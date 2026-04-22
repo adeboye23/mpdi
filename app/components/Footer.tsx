@@ -20,44 +20,35 @@ export default function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Building a resilient, empowered and ethical African media ecosystem.
             </p>
-            <div className="flex gap-4">
-              <a 
-                href="https://twitter.com/mpdi_africa" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a 
-                href="https://facebook.com/mpdi.africa" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
-              </a>
-              <a 
-                href="https://instagram.com/mpdi_africa" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
-              <a 
-                href="https://linkedin.com/company/mpdi-africa" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-mpdi-yellow transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
-            </div>
+          <div className="flex gap-4">
+  <a 
+    href="https://x.com/mediahangoutng?s=21" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-mpdi-yellow transition-colors"
+    aria-label="X (Twitter)"
+  >
+    <Twitter size={20} />
+  </a>
+  <a 
+    href="https://www.instagram.com/mediahangoutng?igsh=NHk0cTV6dDMwajJm" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-mpdi-yellow transition-colors"
+    aria-label="Instagram"
+  >
+    <Instagram size={20} />
+  </a>
+  <a 
+    href="https://www.linkedin.com/in/mediahangoutng-network-a41abb128" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-mpdi-yellow transition-colors"
+    aria-label="LinkedIn"
+  >
+    <Linkedin size={20} />
+  </a>
+</div>
           </div>
 
           {/* Quick Links */}
