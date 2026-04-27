@@ -48,7 +48,7 @@ export default function Home() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&q=80)',
+              backgroundImage: "url('/img-1.jpeg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
@@ -87,7 +87,7 @@ export default function Home() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1920&q=80)',
+              backgroundImage: "url('/img-2.jpeg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
@@ -118,7 +118,7 @@ export default function Home() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=1920&q=80)',
+              backgroundImage: "url('/img-3.jpeg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
@@ -165,7 +165,7 @@ export default function Home() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80)',
+              backgroundImage: "url('/img-4.jpeg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
@@ -208,7 +208,7 @@ export default function Home() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&q=80)',
+              backgroundImage: "url('/img-5.jpeg')",
             }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
