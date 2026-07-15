@@ -40,7 +40,7 @@ export default function Footer() {
     <Twitter size={20} />
   </a>
   <a 
-    href="https://www.instagram.com/@mpdi612" 
+    href="https://www.instagram.com/mpdi612/" 
     target="_blank" 
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-mpdi-yellow transition-colors"
@@ -49,7 +49,7 @@ export default function Footer() {
     <Instagram size={20} />
   </a>
   <a 
-    href="https://www.linkedin.com/in/media-for-pan-african-development-a41abb128" 
+    href="https://www.linkedin.com/company/media-for-africa-development-initiative/" 
     target="_blank" 
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-mpdi-yellow transition-colors"
