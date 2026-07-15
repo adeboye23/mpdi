@@ -22,7 +22,7 @@ export default function Footer() {
             </p>
           <div className="flex gap-4">
   <a 
-    href="https://www.facebook.com/mpdinitative" 
+    href="https://www.facebook.com/mpdinitiative" 
     target="_blank" 
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-mpdi-yellow transition-colors"
@@ -31,7 +31,7 @@ export default function Footer() {
     <Facebook size={20} />
   </a>
   <a 
-    href="https://x.com/@mpdinitiative" 
+    href="https://x.com/mediahangoutng?s=21" 
     target="_blank" 
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-mpdi-yellow transition-colors"
@@ -40,7 +40,7 @@ export default function Footer() {
     <Twitter size={20} />
   </a>
   <a 
-    href="https://www.instagram.com/mpdi612/" 
+    href="https://www.instagram.com/mpdi612?igsh=MXdpeWtyeHByN3FscQ==" 
     target="_blank" 
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-mpdi-yellow transition-colors"
@@ -49,7 +49,7 @@ export default function Footer() {
     <Instagram size={20} />
   </a>
   <a 
-    href="https://www.linkedin.com/company/media-for-africa-development-initiative/" 
+    href="https://www.linkedin.com/company/media-for-pan-african-development-initiative/" 
     target="_blank" 
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-mpdi-yellow transition-colors"
