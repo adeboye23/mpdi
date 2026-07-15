@@ -31,7 +31,7 @@ export default function Footer() {
     <Facebook size={20} />
   </a>
   <a 
-    href="https://x.com/mediahangoutng?s=21" 
+    href="https://x.com/@mpdinitiative" 
     target="_blank" 
     rel="noopener noreferrer"
     className="text-gray-400 hover:text-mpdi-yellow transition-colors"
