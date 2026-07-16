@@ -46,10 +46,10 @@ export default function Navbar() {
             </div>
             {/* Social icons - visible on both mobile and desktop */}
             <div className="flex items-center gap-4">
-              <a href="https://www.facebook.com/mpdinitative" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFC600] transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/mpdinitiative" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFC600] transition-colors" aria-label="Facebook">
                 <Facebook size={14} />
               </a>
-              <a href="https://x.com/mediahangoutng?s=21" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFC600] transition-colors" aria-label="X (Twitter)">
+              <a href="https://x.com/@mpdinitiative" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFC600] transition-colors" aria-label="X (Twitter)">
                 <Twitter size={14} />
               </a>
               <a href="https://www.instagram.com/mpdi612?igsh=MXdpeWtyeHByN3FscQ==" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFC600] transition-colors" aria-label="Instagram">
