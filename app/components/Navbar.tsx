@@ -33,9 +33,10 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 right-0 z-50">
 
         {/* Top Utility Bar */}
-        <div className="hidden md:flex bg-[#191919] text-white text-xs py-2">
-          <div className="container mx-auto px-6 flex justify-between items-center">
-            <div className="flex items-center gap-6">
+        <div className="bg-[#191919] text-white text-xs py-2">
+          <div className="container mx-auto px-6 flex justify-center md:justify-between items-center">
+            {/* Contact info - hidden on mobile, visible on desktop */}
+            <div className="hidden md:flex items-center gap-6">
               <a href="mailto:info@mpdi.org" className="flex items-center gap-2 hover:text-[#FFC600] transition-colors">
                 <Mail size={14} /> info@mpdi.org
               </a>
@@ -43,6 +44,7 @@ export default function Navbar() {
                 <Phone size={14} /> +234-123-4567
               </a>
             </div>
+            {/* Social icons - visible on both mobile and desktop */}
             <div className="flex items-center gap-4">
               <a href="https://www.facebook.com/mpdinitative" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFC600] transition-colors" aria-label="Facebook">
                 <Facebook size={14} />

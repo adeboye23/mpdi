@@ -42,7 +42,7 @@ export default function Home() {
       <Navbar />
       
       
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative min-h-[calc(100vh+40px)] overflow-hidden">
         {/* Slide 1: Main Mission - Journalists Working */}
         <div className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
           <div 
@@ -54,7 +54,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
           <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-6 pt-20">
+            <div className="container mx-auto px-6 pt-24">
               <div className="max-w-4xl">
                 {/* Text Directly on Background */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F6B100]/30 border border-[#F6B100] mb-6">
@@ -93,7 +93,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
           <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-6 pt-20">
+            <div className="container mx-auto px-6 pt-24">
               <div className="max-w-4xl ml-auto text-right">
                 {/* Text Directly on Background */}
                 <BookOpen size={64} className="text-[#F6B100] mb-6 ml-auto drop-shadow-2xl" />
@@ -124,7 +124,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
           <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-6 pt-20">
+            <div className="container mx-auto px-6 pt-24">
               <div className="max-w-4xl">
                 {/* Text Directly on Background */}
                 <Shield size={64} className="text-[#F6B100] mb-6 drop-shadow-2xl" />
@@ -171,7 +171,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
           <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-6 pt-20">
+            <div className="container mx-auto px-6 pt-24">
               <div className="max-w-4xl ml-auto text-right">
                 {/* Text Directly on Background */}
                 <Users size={64} className="text-white mb-6 ml-auto drop-shadow-2xl" />
@@ -214,7 +214,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
           <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-6 pt-20">
+            <div className="container mx-auto px-6 pt-24">
               <div className="max-w-4xl mx-auto text-center">
                 {/* Text Directly on Background */}
                 <Heart size={64} className="text-[#F6B100] mb-6 mx-auto drop-shadow-2xl" />
